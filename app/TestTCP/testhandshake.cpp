@@ -21,6 +21,9 @@
 #include <gtest/gtest.h>
 #include "testenv.hpp"
 
+#include <iostream>
+using namespace std;
+
 using namespace E;
 
 class TestHandshake_Accept : public SystemCallApplication, private TCPApplication
@@ -68,6 +71,7 @@ protected:
 			socklen_t client_len = sizeof(client_addr);
 			memset(&client_addr, 0, client_len);
 			int client_fd = accept(server_socket, (struct sockaddr*)&client_addr, &client_len);
+            
 			if(client_fd >= 0)
 			{
 				EXPECT_EQ(client_len, sizeof(client_addr));
